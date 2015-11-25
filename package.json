@@ -1,0 +1,21 @@
+{
+  "name": "cloudinary-upload-api",
+  "version": "1.0.0",
+  "description": "A simple API to authenticate a user and manage files on cloudinary",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Ahishar Uri Maxima <ahishar@hivebridge.com>",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^0.9.0",
+    "body-parser": "^1.13.2",
+    "cloudinary": "^1.2.6",
+    "express": "^4.12.3",
+    "jsonwebtoken": "^5.0.4",
+    "mongoose": "^4.0.6",
+    "multer": "^1.1.0",
+    "serve-favicon": "^2.2.0",
+  }
+}
