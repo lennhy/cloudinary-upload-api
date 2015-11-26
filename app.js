@@ -9,7 +9,7 @@ module.exports = function() {
     var login = require('./api/login');
     var customer = require('./api/customer');
     var upload = require('./api/upload');
-    
+    var images = require('./api/images');
 
     // Defining the App
     var app = express();
@@ -42,7 +42,7 @@ module.exports = function() {
     app.use('/login', login);
     app.use('/customer', customer);
     app.use('/upload', upload);
-
+    app.use('/images', images);
 
     // catch 404 and forward to error handler
     app.use(function(req, res, next) {

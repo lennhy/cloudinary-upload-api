@@ -9,9 +9,9 @@ var express = require('express'),
 router.use(bodyParser.urlencoded({ extended: false }));
 
 cloudinary.config({
-	cloud_name: 'marketdoc',
-	api_key: '415993784361253',
-	api_secret: 'nx8KojBNL8MQVFv8FCFarNEEy_c'
+	cloud_name: 'dhthj8qmy',
+	api_key: '534567889186334',
+	api_secret: 'Ui9XrHTVo8ZcBGmpPYLaEVr_ka4'
 });
 
 
@@ -33,18 +33,20 @@ router.use(multer({ dest: './uploads/',
 router.post('/:projectName', function(req, res) {
 	var projectName = req.params.projectName;
 
-	var postFiles = req.files;
-	var logFilePath = postFiles.post_photo.path;
+	console.log(req);
+
+	var postFiles = req.file;
+	var logFilePath = postFiles.path;
 	var cloudaryPublicId = "sdb_"+Date.now();
-	var imageURL = cloudaryPublicId +"."+ postFiles.post_photo.extension;
+	var imageURL = cloudaryPublicId +"."+ postFiles.originalname;
 
 	cloudinary.uploader.upload(logFilePath, function(result) {
-		console.log(postFiles.post_photo.extension);
+		console.log(postFiles);
 	}, { public_id: cloudaryPublicId});
 
 
 
-	var imageModel = new addressesSchema();
+	var imageModel = new imagesSchema();
 
 	imageModel.projectName = projectName;
 	imageModel.imageURL = imageURL;
@@ -52,10 +54,14 @@ router.post('/:projectName', function(req, res) {
 
 	var addressId = imageModel.save(function (err, addressDoc) {
 	    if (err) return console.error(err);
-	    imageModel.imagesSchema();
+	    // imageModel.imagesSchema();
 	});
 
-
+	res.json({
+		"projectName": projectName,
+		"imageURL": imageURL,
+		"cloudaryPublicId": cloudaryPublicId
+	});
 });
 
 module.exports = router;
